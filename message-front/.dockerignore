@@ -1,0 +1,45 @@
+# Ignore Node.js dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Ignore Angular build artifacts
+dist
+out-tsc
+
+# Ignore temporary files and logs
+*.log
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE and editor config files
+.idea
+.vscode
+*.code-workspace
+
+# Ignore environment-specific files
+*.env
+*.local
+*.development
+*.production
+
+# Ignore Git-related files
+.git
+.gitignore
+.gitattributes
+
+# Ignore Docker-related files (optional, unless needed)
+Dockerfile
+.dockerignore
+
+# Ignore unnecessary files from your source directory
+**/e2e
+**/test
+coverage
