@@ -1,1 +1,51 @@
-<p>add-partenaire works!</p>
+<div class="partner-form-container">
+
+  <form [formGroup]="partnerForm" (ngSubmit)="onSubmit()">
+  <h2 class="text">Add Partner</h2>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Alias</mat-label>
+      <input matInput formControlName="alias" required>
+      <mat-error *ngIf="partnerForm?.get('alias')?.hasError('required')">Alias is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type" required>
+        <mat-option *ngFor="let type of partnerTypes" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="partnerForm?.get('type')?.hasError('required')">Type is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Direction</mat-label>
+      <mat-select formControlName="direction" required>
+        <mat-option *ngFor="let direction of directions" [value]="direction">{{ direction }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="partnerForm?.get('direction')?.hasError('required')">Direction is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Application</mat-label>
+      <input matInput formControlName="application">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Processed Flow Type</mat-label>
+      <mat-select formControlName="processedFlowType" required>
+        <mat-option *ngFor="let flowType of processedFlowTypes" [value]="flowType">{{ flowType }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="partnerForm?.get('processedFlowType')?.hasError('required')">Processed Flow Type is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" required></textarea>
+      <mat-error *ngIf="partnerForm?.get('description')?.hasError('required')">Description is required</mat-error>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit" [disabled]="partnerForm.invalid">Add Partner</button>
+    </div>
+  </form>
+</div>

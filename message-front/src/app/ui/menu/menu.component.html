@@ -1,1 +1,10 @@
-<p>menu works!</p>
+<mat-toolbar color="primary">
+  <span>Gestion de Messages</span>
+  <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/messages">Messages</button>
+    <button mat-menu-item routerLink="/partners">Partenaires</button>
+    <button mat-menu-item routerLink="/add-partner">Ajouter un partenaire</button>
+  </mat-menu>
+</mat-toolbar>

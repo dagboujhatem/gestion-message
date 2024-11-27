@@ -1,0 +1,29 @@
+.partner-form-container {
+  display: flex;
+  justify-content: center;  /* Horizontally centers the form */
+  align-items: center;      /* Vertically centers the form */
+  height: 100vh;            /* Full viewport height */
+  background-color: #f4f4f4; /* Optional: Set background color for contrast */
+}
+.partner-form-container .text {
+  width: 100%;
+  align-content: center;
+  background-color: #fff; /* Optional: Set background color for contrast */
+}
+form {
+  width: 100%;
+  max-width: 600px;         /* Maximum width for the form */
+  padding: 20px;
+  background-color: white;  /* White background for the form */
+  border-radius: 8px;       /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+mat-form-field {
+  width: 100%;              /* Make form fields take the full width */
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;  /* Align the submit button to the right */
+}
