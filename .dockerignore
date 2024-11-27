@@ -1,0 +1,45 @@
+# Exclude Maven/Gradle build files and directories
+.mvn/
+target/
+*.iml
+.idea/
+.gradle/
+build/
+
+# Exclude OS-specific files
+.DS_Store
+Thumbs.db
+
+# Exclude temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Exclude IDE configuration files
+*.vscode/
+*.project
+*.classpath
+
+# Exclude test and coverage reports
+*.test-results/
+*.coverage/
+.coverage/
+
+# Exclude Git files
+.git/
+.gitignore
+
+# Exclude environment configuration files (ensure these are handled securely)
+.env
+*.env
+
+# Exclude node_modules if front-end assets are in the same repository
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Exclude unnecessary files
+*.jar
+*.war

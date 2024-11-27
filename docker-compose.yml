@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Spring Boot application service
+  spring-app:
+    image: spring-app:latest   # Use the name of your image or 'build' if building it in the compose file
+    build:
+      context: .               # Build the Dockerfile in the current directory
+      dockerfile: Dockerfile    # Dockerfile name if different
+    ports:
+      - "8080:8080"             # Map the application port
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gestion-messages
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=W6o6aOirRdDuxCk
+      - SPRING_JMS_BROKER_URL=tcp://ibmmq:1414  # IBM MQ URL
+    depends_on:
+      - mysql                  # Wait for MySQL service before starting the Spring Boot app
+      - ibmmq                  # Wait for IBM MQ service before starting the Spring Boot app
+
+  # MySQL service
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: W6o6aOirRdDuxCk
+      MYSQL_DATABASE: springdb
+    ports:
+      - "3306:3306"             # Expose MySQL port to localhost (if needed)
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persist data on the host system
+    networks:
+      - backend                 # Ensure both services are on the same network
+
+  # IBM MQ service (JMS broker)
+  ibmmq:
+    image: ibmcom/mq:latest    # Official IBM MQ Docker image
+    environment:
+      - LICENSE=accept        # Accept the license for IBM MQ
+      - MQ_QMGR=QM1           # Set the queue manager name
+      - MQ_APP_PASSWORD=admin # Set the admin password
+      - MQ_ADMIN_USER=admin   # Set the admin user
+    ports:
+      - "1414:1414"  # IBM MQ client connection port
+      - "9443:9443"  # Web console port for IBM MQ (optional)
+    networks:
+      - backend         # Ensure both services are on the same network
+
+# Define networks and volumes for the services
+networks:
+  backend:
+
+volumes:
+  mysql-data:
+    driver: local

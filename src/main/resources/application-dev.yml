@@ -1,0 +1,24 @@
+
+spring:
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3306/gestion-messages
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+# IBM MQ Connection Configuration
+ibm:
+  mq:
+    queue-manager: QM1            # Replace with your queue manager name
+    channel: CHANNEL_NAME         # Replace with your channel name
+    conn-name: hostname(port)     # Replace with your host and port (e.g., "localhost(1414)")
+    user: admin                   # Optional, if security is enabled
+    password: admin               # Optional, if security is enabled
+    queue: TEST.QUEUE             # The queue to send/receive messages
