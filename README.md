@@ -4,10 +4,16 @@ Cette application a été réalisé pour répondre à un test technique.
 
 Vous pouvez éxécuter l'application en tappant `docker-compose up --build`. Ce qui permet de lancer: 
  
-- L'application Backend : 
-- L'application Frontend : 
-- Container de base de données sql :
-- Container d'`IBM MQ` : 
+- L'application Backend : [http://localhost:8081/](http://localhost:8081/)
+- L'application Frontend : [http://localhost:8080/](http://localhost:8080/)
+- Container de base de données sql : usilise l'image `mysql`.
+- Container d'`IBM MQ` : Vous pouvez accéder à l' via ce lien : [https://localhost:9443/ibmmq/console/login.html](https://localhost:9443/ibmmq/console/login.html)
+
+## Installation:
+1. Exécuter `docker-compose up --build` dans le but de builder le projet.
+2. Si vous avez un problème de connexion avec MySQL, pensez plutôt à créer votre base de données nommé `messages` comme il est indiqué dans le catupre suivante:
+![img_1.png](img_1.png)
+3. Accéder au IHM via ce lien[http://localhost:8080/](http://localhost:8080/)
 
 ## Context: 
 Le département de paiement de la banque est amené à recevoir des messages de la part des applications Back Office via une file `IBM MQ` Series.
