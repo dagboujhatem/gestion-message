@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  # Angular application service
+  message-front:
+    build:
+      context: ./message-front # Build context points to the message-front folder
+      dockerfile: Dockerfile   # Dockerfile name in the folder
+    container_name: message-front-app
+    ports:
+      - "8080:80"              # Map port 8080 on the host to port 80 in the container
+    environment:
+      - NODE_ENV=production               # Example environment variable
+      - API_URL=http://spring-app:8081    # Example environment variable
+    restart: unless-stopped    # Restart policy for the container
+    depends_on:
+      - spring-app
+
   # Spring Boot application service
   spring-app:
     image: spring-app:latest   # Use the name of your image or 'build' if building it in the compose file
@@ -8,13 +23,21 @@ services:
       context: .               # Build the Dockerfile in the current directory
       dockerfile: Dockerfile    # Dockerfile name if different
     ports:
-      - "8080:8080"             # Map the application port
+      - "8081:8081"             # Map the application port
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gestion-messages
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/messages?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=W6o6aOirRdDuxCk
-      - SPRING_JMS_BROKER_URL=tcp://ibmmq:1414  # IBM MQ URL
+      - IBM_MQ_QUEUE_MANAGER=QM1
+      - IBM_MQ_CHANNEL=DEV.APP.SVRCONN
+      - IBM_MQ_CONN_NAME=ibmmq(1414)
+      - IBM_MQ_USER=app
+      - IBM_MQ_PASSWORD=passw0rd
+      - IBM_MQ_QUEUE=TEST.QUEUE
+    networks:
+      - backend
+      - mq-network
     depends_on:
       - mysql                  # Wait for MySQL service before starting the Spring Boot app
       - ibmmq                  # Wait for IBM MQ service before starting the Spring Boot app
@@ -24,7 +47,9 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: W6o6aOirRdDuxCk
-      MYSQL_DATABASE: springdb
+      MYSQL_DATABASE: messages
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
     ports:
       - "3306:3306"             # Expose MySQL port to localhost (if needed)
     volumes:
@@ -38,18 +63,31 @@ services:
     environment:
       - LICENSE=accept        # Accept the license for IBM MQ
       - MQ_QMGR=QM1           # Set the queue manager name
-      - MQ_APP_PASSWORD=admin # Set the admin password
+      - MQ_ADMIN_PASSWORD=passw0rd # Set the 'admin' password
+      - MQ_APP_PASSWORD=passw0rd # Set the 'app' password
       - MQ_ADMIN_USER=admin   # Set the admin user
+      - MQ_APP_CHANNEL=DEV.APP.SVRCONN
+#    hostname: mq-server
+#    stdin_open: true
+#    tty: true
+#    restart: no
     ports:
       - "1414:1414"  # IBM MQ client connection port
       - "9443:9443"  # Web console port for IBM MQ (optional)
+    volumes:
+      - qm1data:/mnt/mqm
     networks:
-      - backend         # Ensure both services are on the same network
+      - mq-network         # Ensure both services are on the same network
 
 # Define networks and volumes for the services
 networks:
   backend:
+    driver: bridge
+  mq-network:
+    driver: bridge
 
 volumes:
   mysql-data:
+    driver: local
+  qm1data:
     driver: local

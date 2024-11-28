@@ -30,11 +30,6 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-        <!-- Spring Boot JMS -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
-		</dependency>
 		<!-- IBM MQ Client -->
 		<dependency>
 			<groupId>com.ibm.mq</groupId>

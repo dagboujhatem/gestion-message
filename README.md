@@ -56,6 +56,19 @@ Cette application devrait répondre à des contraintes de performance et de rés
 
 Gestion de l’authentification et des autorisations.
 
-### Contact
+### Rappel: 
 
+Pour lancer le build des images Docker, vous avez deux options, soit on utilisant un cache build ou pas : 
+
+`docker-compose up --build`  # still use image cache
+
+Ou bien
+
+`docker-compose build --no-cache`  # never use cache
+
+==> Cette commande : `docker-compose up --build --force-recreate` permet de forcer la recréation des images Docker  en vidant le cache (`docker system prune`).
+
+==> Cette commande : `docker-compose build --no-cache <service>` permet de forcer la recréation d'un image docker pour **un service** bien spécifique.
+
+### Contact: 
 You can contact me : [dagboujhatem@gmail.com](mailto:dagboujhatem@gmail.com)

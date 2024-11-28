@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessagesService} from "../../services/messages.service";
 import {Message} from "../../models/Message";
 import {MatDialog} from "@angular/material/dialog";
 import {MessageDetailComponent} from "../message-detail/message-detail.component";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-list-messages',
@@ -10,12 +12,14 @@ import {MessageDetailComponent} from "../message-detail/message-detail.component
   styleUrls: ['./list-messages.component.css']
 })
 export class ListMessagesComponent implements OnInit{
+  displayedColumns: string[] = ['id', 'content', 'status', 'receivedAt'];
   messages: Message[] = [];
   currentPage: number = 0;
   pageSize: number = 5;
   totalMessages: number = 0;
-  displayedColumns: string[] = ['id', 'content', 'status', 'receivedAt'];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
   constructor(private dialog: MatDialog, private messageService: MessagesService) {}
 
   ngOnInit(): void {
@@ -25,13 +29,14 @@ export class ListMessagesComponent implements OnInit{
   loadMessages(): void {
     this.messageService.getMessages(this.currentPage, this.pageSize)
       .subscribe((data:any) => {
-        this.messages = data.messages;
-        this.totalMessages = data.total;
+        this.totalMessages = data.totalElements;
+        this.dataSource.data = data.content;
       });
   }
 
-  onPageChange(page: number): void {
-    this.currentPage = page;
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
     this.loadMessages();
   }
 

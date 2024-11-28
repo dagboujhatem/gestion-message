@@ -9,8 +9,6 @@ import {MatTableDataSource} from "@angular/material/table";
   styleUrls: ['./list-partenaire.component.css']
 })
 export class ListPartenaireComponent implements OnInit {
-
-  partners: any[] = [];
   displayedColumns: string[] = ['alias', 'type', 'direction', 'processedFlowType', 'description', 'actions'];
   totalPartners: number = 0;
   pageSize: number = 5;
@@ -28,10 +26,8 @@ export class ListPartenaireComponent implements OnInit {
   getPartners(page: number, size: number): void {
     this.partnerService.getPartenaires(page,size).subscribe(
       (data: any) => {
-        this.partners = data.content;
         this.totalPartners = data.totalElements;
-        this.dataSource.data = this.partners;
-        // this.dataSource.paginator = this.paginator;
+        this.dataSource.data = data.content;
       },
       error => {
         console.error('Error fetching partners', error);

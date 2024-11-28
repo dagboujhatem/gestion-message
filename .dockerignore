@@ -43,3 +43,5 @@ yarn-error.log
 # Exclude unnecessary files
 *.jar
 *.war
+message-front/node_modules
+

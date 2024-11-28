@@ -1,14 +1,12 @@
 package fr.cacib.gestion_message.services;
 
-import fr.cacib.gestion_message.model.enums.EStatutMessage;
 import fr.cacib.gestion_message.model.Message;
+import fr.cacib.gestion_message.model.enums.EStatutMessage;
 import fr.cacib.gestion_message.repositories.MessageRepository;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.jms.annotation.JmsListener;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,10 +17,10 @@ import java.time.LocalDateTime;
 @Slf4j
 public class MessageService {
 
-    private final JmsTemplate jmsTemplate;
+    //private final JmsTemplate jmsTemplate;
     private final MessageRepository messageRepository;
 
-    @JmsListener(destination = "TEST.QUEUE")
+    //@JmsListener(destination = "TEST.QUEUE")
     public void receiveMessage(String messageContent) {
         Message message = new Message();
         message.setContent(messageContent);

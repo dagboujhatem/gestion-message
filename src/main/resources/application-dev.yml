@@ -2,12 +2,13 @@
 spring:
   datasource:
     username: root
-    password:
-    url: jdbc:mysql://localhost:3306/gestion-messages
+    password: W6o6aOirRdDuxCk
+    url: jdbc:mysql://localhost:3306/messages
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.MySQLDialect
     show-sql: false
     properties:
       hibernate:
@@ -17,8 +18,8 @@ spring:
 ibm:
   mq:
     queue-manager: QM1            # Replace with your queue manager name
-    channel: CHANNEL_NAME         # Replace with your channel name
-    conn-name: hostname(port)     # Replace with your host and port (e.g., "localhost(1414)")
-    user: admin                   # Optional, if security is enabled
-    password: admin               # Optional, if security is enabled
+    channel: DEV.APP.SVRCONN      # Replace with your channel name
+    conn-name: localhost(1414)    # Replace with your host and port (e.g., "localhost(1414)")
+    user: app                     # Optional, if security is enabled
+    password: passw0rd            # Optional, if security is enabled
     queue: TEST.QUEUE             # The queue to send/receive messages
