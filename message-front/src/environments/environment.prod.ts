@@ -1,4 +1,10 @@
+declare var window: {
+  env: {
+    apiUrl: string;
+  };
+};
+
 export const environment = {
   production: true,
-  apiUrl: 'http://spring-app:8081',
+  apiUrl: window["env"]?.apiUrl || "default",
 };
