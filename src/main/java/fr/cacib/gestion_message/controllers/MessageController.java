@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/messages")
+@CrossOrigin(origins = "*")
 @Data
 public class MessageController {
     private final MessageService messageService;

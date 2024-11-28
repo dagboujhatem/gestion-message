@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/partenaires")
+@CrossOrigin(origins = "*")
 @Data
 public class PartenaireController {
 

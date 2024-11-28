@@ -13,6 +13,8 @@ export class ListPartenaireComponent implements OnInit {
   partners: any[] = [];
   displayedColumns: string[] = ['alias', 'type', 'direction', 'processedFlowType', 'description', 'actions'];
   totalPartners: number = 0;
+  pageSize: number = 5;
+  currentPage: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
@@ -20,7 +22,7 @@ export class ListPartenaireComponent implements OnInit {
   constructor(private partnerService: PartenaireService) { }
 
   ngOnInit(): void {
-    this.getPartners(0, 5);
+    this.getPartners(this.currentPage, this.pageSize);
   }
 
   getPartners(page: number, size: number): void {
@@ -38,13 +40,13 @@ export class ListPartenaireComponent implements OnInit {
   }
 
   onPageChange(event: PageEvent): void {
-    const page = event.pageIndex;
-    const size = event.pageSize;
-    this.getPartners(page, size);  // Fetch data for the selected page
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.getPartners(this.currentPage, this.pageSize);
   }
   onDeletePartner(id: number): void {
     this.partnerService.deletePartenaire(id).subscribe(() => {
-      this.getPartners(0,5);  // Refresh the list after deleting
+      this.getPartners(this.currentPage, this.pageSize);
     });
   }
 

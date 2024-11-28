@@ -32,7 +32,9 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let partner">
-        <button mat-button (click)="onDeletePartner(partner.id)">Delete</button>
+        <button mat-button (click)="onDeletePartner(partner.id)">
+          <mat-icon>delete</mat-icon> Delete
+        </button>
       </td>
     </ng-container>
 
@@ -41,7 +43,7 @@
   </table>
   <mat-paginator
     [length]="totalPartners"
-    [pageSize]="5"
+    [pageSize]="pageSize"
     [pageSizeOptions]="[5, 10, 25]"
     (page)="onPageChange($event)"
     showFirstLastButtons>
