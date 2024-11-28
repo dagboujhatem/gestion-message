@@ -12,21 +12,22 @@ Vous pouvez éxécuter l'application en tappant `docker-compose up --build`. Ce 
 ## Installation:
 1. Exécuter `docker-compose up --build` dans le but de builder le projet.
 2. Si vous avez un problème de connexion avec MySQL, pensez plutôt à créer votre base de données nommé `messages` comme il est indiqué dans le catupre suivante:
-![img_1.png](screenshots/img_1.png)
+![console_create_database.png](screenshots/console_create_database.png)
 3. Accéder au IHM via ce lien[http://localhost:8080/](http://localhost:8080/)
 
 ## Screenshot of the project:
 
-1. List Partner view: cette vue contient la gestion des partenaires (en utilisant le `server silde pagination`). Aussi,
+1. List Partner View: cette vue contient la gestion des partenaires (en utilisant le `server silde pagination`). Aussi,
   dans cette vue vous pouvez supprimer un partenaire:
-![img.png](screenshots/img.png)
-![img_2.png](screenshots/img_2.png)
 
-2. Add Partner view: Cette vue permet d'ajouter un partenaire:
+![Partner_list.png](screenshots/Partner_list.png)
 
 
+2. Add Partner View: Cette vue permet d'ajouter un partenaire:
 
-3. List messages view: Cette vue permet de voir les messages sous la forme d'une liste (en utilisant le `server silde pagination`). Aussi,
+![Add_Partner.png](screenshots/Add_Partner.png)
+
+3. List Messages View: Cette vue permet de voir les messages sous la forme d'une liste (en utilisant le `server silde pagination`). Aussi,
    dans cette vue vous pouvez afficher un popup pour voir les détails d'un message en particulier en cliquant sur la colonne `content`:
 
 
