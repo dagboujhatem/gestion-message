@@ -31,7 +31,7 @@ export class ListPartenaireComponent implements OnInit {
         this.partners = data.content;
         this.totalPartners = data.totalElements;
         this.dataSource.data = this.partners;
-        this.dataSource.paginator = this.paginator;
+        // this.dataSource.paginator = this.paginator;
       },
       error => {
         console.error('Error fetching partners', error);

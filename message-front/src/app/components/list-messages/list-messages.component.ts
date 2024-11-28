@@ -11,8 +11,8 @@ import {MessageDetailComponent} from "../message-detail/message-detail.component
 })
 export class ListMessagesComponent implements OnInit{
   messages: Message[] = [];
-  currentPage: number = 1;
-  pageSize: number = 10;
+  currentPage: number = 0;
+  pageSize: number = 5;
   totalMessages: number = 0;
   displayedColumns: string[] = ['id', 'content', 'status', 'receivedAt'];
 
