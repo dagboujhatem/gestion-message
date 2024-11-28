@@ -12,8 +12,25 @@ Vous pouvez éxécuter l'application en tappant `docker-compose up --build`. Ce 
 ## Installation:
 1. Exécuter `docker-compose up --build` dans le but de builder le projet.
 2. Si vous avez un problème de connexion avec MySQL, pensez plutôt à créer votre base de données nommé `messages` comme il est indiqué dans le catupre suivante:
-![img_1.png](img_1.png)
+![img_1.png](screenshots/img_1.png)
 3. Accéder au IHM via ce lien[http://localhost:8080/](http://localhost:8080/)
+
+## Screenshot of the project:
+
+1. List Partner view: cette vue contient la gestion des partenaires (en utilisant le `server silde pagination`). Aussi,
+  dans cette vue vous pouvez supprimer un partenaire:
+![img.png](screenshots/img.png)
+![img_2.png](screenshots/img_2.png)
+
+2. Add Partner view: Cette vue permet d'ajouter un partenaire:
+
+
+
+3. List messages view: Cette vue permet de voir les messages sous la forme d'une liste (en utilisant le `server silde pagination`). Aussi,
+   dans cette vue vous pouvez afficher un popup pour voir les détails d'un message en particulier en cliquant sur la colonne `content`:
+
+
+
 
 ## Context: 
 Le département de paiement de la banque est amené à recevoir des messages de la part des applications Back Office via une file `IBM MQ` Series.
