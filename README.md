@@ -30,7 +30,13 @@ Vous pouvez éxécuter l'application en tappant `docker-compose up --build`. Ce 
 3. List Messages View: Cette vue permet de voir les messages sous la forme d'une liste (en utilisant le `server silde pagination`). Aussi,
    dans cette vue vous pouvez afficher un popup pour voir les détails d'un message en particulier en cliquant sur la colonne `content`:
 
+![Message_list.png](screenshots/Message_list.png)
 
+4. Vérification de connection du beckend to IBM MQ: 
+
+Dans les logs, vous trouvez les détails de la connexion avec IBM MQ. Ainsi que, les détails du traitement de chaque message reçu.  
+
+![Logging.png](screenshots/Logging.png)
 
 
 ## Context: 
