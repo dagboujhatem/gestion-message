@@ -1,17 +1,21 @@
 package fr.cacib.gestion_message.config;
 
-import com.ibm.mq.jms.MQConnectionFactory;
-import com.ibm.msg.client.wmq.WMQConstants;
+//import com.ibm.mq.jms.MQConnectionFactory;
+//import com.ibm.msg.client.wmq.WMQConstants;
+import com.ibm.mq.jakarta.jms.MQConnectionFactory;
+import com.ibm.msg.client.jakarta.wmq.WMQConstants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.jms.ConnectionFactory;
+import jakarta.jms.ConnectionFactory;
 
 @Configuration
-public class IBMmqConfig {
-    private final IbmMqProperties mqProperties;
+@Slf4j
+public class IBMMQConfig {
+    private final IBMMQProperties mqProperties;
 
-    public IBMmqConfig(IbmMqProperties mqProperties) {
+    public IBMMQConfig(IBMMQProperties mqProperties) {
         this.mqProperties = mqProperties;
     }
 
@@ -38,12 +42,12 @@ public class IBMmqConfig {
     }
 
     public void printMqConfig() {
-        System.out.println("Queue Manager: " + mqProperties.getQueueManager());
-        System.out.println("Channel: " + mqProperties.getChannel());
-        System.out.println("Connection Name: " + mqProperties.getConnName());
-        System.out.println("User: " + mqProperties.getUser());
-        System.out.println("Password: " + mqProperties.getPassword());
-        System.out.println("Queue: " + mqProperties.getQueue());
+        log.info("Queue Manager: {}" , mqProperties.getQueueManager());
+        log.info("Channel: {}" ,  mqProperties.getChannel());
+        log.info("Connection Name: {}" , mqProperties.getConnName());
+        log.info("User: {}" , mqProperties.getUser());
+        log.info("Password: {}" ,  mqProperties.getPassword());
+        log.info("Queue: {}" ,  mqProperties.getQueue());
     }
 }
 

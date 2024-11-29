@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,14 +21,15 @@ public class MessageService {
     //private final JmsTemplate jmsTemplate;
     private final MessageRepository messageRepository;
 
-    //@JmsListener(destination = "TEST.QUEUE")
+    @JmsListener(destination = "TEST.QUEUE")
     public void receiveMessage(String messageContent) {
+        log.info("Tentative de sauvegarde du : {}", messageContent);
         Message message = new Message();
         message.setContent(messageContent);
         message.setStatus(EStatutMessage.RECU);
         message.setReceivedAt(LocalDateTime.now());
         messageRepository.save(message);
-        log.info("Le message ({}) a été bien reçu.", messageContent);
+        log.info("Le message ({}) a été bien sauvegarder.", messageContent);
     }
 
     public Page<Message> getMessages(Pageable pageable) {

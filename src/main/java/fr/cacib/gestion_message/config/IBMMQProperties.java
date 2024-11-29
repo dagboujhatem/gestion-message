@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class IbmMqProperties {
+public class IBMMQProperties {
     private String queueManager;
     private String channel;
     private String connName;

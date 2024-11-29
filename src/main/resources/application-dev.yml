@@ -17,9 +17,9 @@ spring:
 # IBM MQ Connection Configuration
 ibm:
   mq:
-    queue-manager: QM1            # Replace with your queue manager name
-    channel: DEV.APP.SVRCONN      # Replace with your channel name
-    conn-name: localhost(1414)    # Replace with your host and port (e.g., "localhost(1414)")
-    user: app                     # Optional, if security is enabled
-    password: passw0rd            # Optional, if security is enabled
-    queue: TEST.QUEUE             # The queue to send/receive messages
+    queue-manager: 506762a034e5
+    channel: DEV.APP.SVRCONN
+    connName: localhost(1414),127.0.0.1(1414),ibmmq(1414)
+    user: app
+    password: passw0rd
+    queue: TEST.QUEUE

@@ -30,9 +30,9 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/messages?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=W6o6aOirRdDuxCk
-      - IBM_MQ_QUEUE_MANAGER=QM1
+      - IBM_MQ_QUEUE_MANAGER=506762a034e5
       - IBM_MQ_CHANNEL=DEV.APP.SVRCONN
-      - IBM_MQ_CONN_NAME=ibmmq(1414)
+      - IBM_MQ_CONN_NAME=localhost(1414),127.0.0.1(1414),ibmmq(1414)
       - IBM_MQ_USER=app
       - IBM_MQ_PASSWORD=passw0rd
       - IBM_MQ_QUEUE=TEST.QUEUE
@@ -68,10 +68,6 @@ services:
       - MQ_APP_PASSWORD=passw0rd # Set the 'app' password
       - MQ_ADMIN_USER=admin   # Set the admin user
       - MQ_APP_CHANNEL=DEV.APP.SVRCONN
-#    hostname: mq-server
-#    stdin_open: true
-#    tty: true
-#    restart: no
     ports:
       - "1414:1414"  # IBM MQ client connection port
       - "9443:9443"  # Web console port for IBM MQ (optional)
