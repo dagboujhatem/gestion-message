@@ -7,21 +7,16 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-
 
 @Service
 @Data
 @Slf4j
 public class MessageService {
-
-    //private final JmsTemplate jmsTemplate;
     private final MessageRepository messageRepository;
 
-    @JmsListener(destination = "TEST.QUEUE")
     public void receiveMessage(String messageContent) {
         log.info("Tentative de sauvegarde du : {}", messageContent);
         Message message = new Message();
