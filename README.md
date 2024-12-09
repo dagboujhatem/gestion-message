@@ -1,19 +1,40 @@
 # Coding Test
 
-Cette application a été réalisé pour répondre à un test technique.
+Cette application a été réalisé pour répondre à un test technique afin d'intéger la `CA-CIB`.
 
 Vous pouvez éxécuter l'application en tappant `docker-compose up --build`. Ce qui permet de lancer: 
  
 - L'application Backend : [http://localhost:8081/](http://localhost:8081/)
 - L'application Frontend : [http://localhost:8080/](http://localhost:8080/)
-- Container de base de données sql : usilise l'image `mysql`.
-- Container d'`IBM MQ` : Vous pouvez accéder à l' via ce lien : [https://localhost:9443/ibmmq/console/login.html](https://localhost:9443/ibmmq/console/login.html)
+- Container de base de données `SQL` : ce container utilise l'image `mysql:8.0` afin de créer une base de données SQL, le nom du base utilisé dans cette application est `messages`.
+- Container d'`IBM MQ` : ce container utilise l'image `ibmcom/mq:latest` afin de créer un middleware de gestion des messages en utilisant `IBM MQ`. Vous pouvez accéder au console d'`IBM MQ` via ce lien : [https://localhost:9443/ibmmq/console/login.html](https://localhost:9443/ibmmq/console/login.html)
 
 ## Installation:
 1. Exécuter `docker-compose up --build` dans le but de builder le projet.
 2. Si vous avez un problème de connexion avec MySQL, pensez plutôt à créer votre base de données nommé `messages` comme il est indiqué dans le catupre suivante:
 ![console_create_database.png](screenshots/console_create_database.png)
-3. Accéder au IHM via ce lien[http://localhost:8080/](http://localhost:8080/)
+3. Accéder au IHM via ce lien [http://localhost:8080/](http://localhost:8080/)
+4. Si vous avez un problème lors du lancement de l'application backend, vérifiez bien dans le console d'`IBM MQ` que le channel nommé `TEST.QUEUE` existe, sinon vous devez le créer à partir du console, **une remarque très importante à ce niveau**: 
+après la création du channel il faut ajouter toutes les permissions à l'utilisateur `app` pour qu'il puisse accéder à ce channel correctement (action à faire dans le console d'`IBM MQ`) .
+
+
+#### Rappel:
+
+Pour lancer le build des images Docker, vous avez deux options, soit on utilisant un cache build ou pas :
+
+`docker-compose up --build`  # still use image cache
+
+Ou bien
+
+`docker-compose build --no-cache`  # never use cache
+
+==> Cette commande : `docker-compose up --build --force-recreate` permet de forcer la recréation des images Docker  en vidant le cache (`docker system prune`).
+
+==> Cette commande : `docker-compose build --no-cache <service>` permet de forcer la recréation d'un image docker pour **un service** bien spécifique.
+
+==> Cette commande : `docker-compose up -d <service>` permet d'éxécuter un seul service. L'option `-d` ou bien `--detach` permet d'activer le detach mode, dans ce cas vous pouvez voir les log à partir de la commande : `docker-compose logs`.
+
+==> Cette commande : `docker-compose up -f my_custom_docker_compose.yml` si on a un nom du fichier `docker-compose.yml` personalisé.
 
 ## Screenshot of the project:
 
@@ -79,20 +100,6 @@ Cette application devrait répondre à des contraintes de performance et de rés
 #### Out Of Scope:
 
 Gestion de l’authentification et des autorisations.
-
-### Rappel: 
-
-Pour lancer le build des images Docker, vous avez deux options, soit on utilisant un cache build ou pas : 
-
-`docker-compose up --build`  # still use image cache
-
-Ou bien
-
-`docker-compose build --no-cache`  # never use cache
-
-==> Cette commande : `docker-compose up --build --force-recreate` permet de forcer la recréation des images Docker  en vidant le cache (`docker system prune`).
-
-==> Cette commande : `docker-compose build --no-cache <service>` permet de forcer la recréation d'un image docker pour **un service** bien spécifique.
 
 ### Contact: 
 You can contact me : [dagboujhatem@gmail.com](mailto:dagboujhatem@gmail.com)
